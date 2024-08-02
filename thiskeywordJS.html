@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button onclick="console.log(event);">click</button>
+    
+    <script>
+        //   "use strict";
+
+
+         this   //global space
+        
+         console.log(this); //represent the global object => incase of browser the object is window!
+
+         // In non-strict mode, if the function is invoked as a standalone function (not as a method of an object), this will refer to the global object (which is window in browsers and global in Node.js) or be undefined if the function is in strict mode
+
+         // this inside non - strict mode = ( this substitution )
+
+         // this value depends on how the function is called  mean without any reference (value becomes undefined)
+
+         function x(){
+            console.log(this);
+         }
+        // x();
+
+
+        const obj = {
+            fname: 'divakar',
+            lname: 'S',
+
+            printFirstName: function (destination){
+                console.log((this.fname).toUpperCase() + ' ' + this.lname + ' is going to' + destination);
+            }
+        }
+        obj.printFirstName('london')
+
+
+        const obj2 = {
+            fname: 'ashwin',
+            lname: 'S'
+        }
+        obj.printFirstName.call(obj2, ' UK')
+
+        //call
+        //apply
+        //bind
+
+
+
+
+
+        //arrow function does not have own this but they take the value of their lexical environment where they are enclosed
+
+        //means where it is lexicaly present inside the code so it is present inside the global object
+        const obj3 = {
+            a:10,
+            x: () => {  //arrow function
+                console.log(this); //the value of this over here will not be this object it will be enclosing lexical context; 
+            }
+            }
+        obj3.x() // output: Window {window: Window, self: Window, document: document, name: '', location: Location, …}
+
+        const obj4 = {
+            a:10,
+            x: function () {
+                const y = () => {
+                    console.log(this);
+                }
+                y()
+            }
+            }
+       obj4.x()
+
+
+
+       //this inside DOM
+        
+         
+
+
+
+
+         
+    
+        
+    </script>
+    
+</body>
+</html>
